@@ -1,4 +1,4 @@
-package 数组;
+package 复杂度;
 /*
 * https://leetcode-cn.com/problems/fibonacci-number/
 * 斐波那契数，通常用 F(n) 表示，形成的序列称为 斐波那契数列 。

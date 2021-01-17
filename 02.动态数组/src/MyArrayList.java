@@ -1,9 +1,8 @@
 import java.util.Arrays;
 
 @SuppressWarnings("unchecked")
-public class MyArrayList<E> {
+public class MyArrayList<E> extends CommonParent<E> {
 
-    private int size;
     private E[] elements;
 
     private static final int DEFAULT_CAPACITY = 10;
@@ -16,26 +15,6 @@ public class MyArrayList<E> {
 
     public MyArrayList() {
         elements = (E[]) new Object[DEFAULT_CAPACITY];
-    }
-
-    /* 元素的数量 */
-    public int size() {
-        return size;
-    }
-
-    /* 是否为空 */
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    /* 是否包含某个元素 */
-    public boolean contains(E element) {
-        return indexOf(element) != ELEMENTS_NOT_FOUND;
-    }
-
-    /* 添加元素到最后面 */
-    public void add(E element) {
-        add(size, element);
     }
 
     public void add(int index, E element) {
@@ -57,9 +36,11 @@ public class MyArrayList<E> {
         return elements[index];
     }
 
-    public void set(int index, E element) {
+    public E set(int index, E element) {
         rangeCheck(index);
+        E old = elements[index];
         elements[index] = element;
+        return old;
     }
 
     public E remove(int index) {
@@ -106,22 +87,6 @@ public class MyArrayList<E> {
         }
         elements = newElements;
         System.out.println("扩容前：" + oldCapacity + "，扩容后：" + newCapacity);
-    }
-
-    private void outOfBounds(int index) {
-        throw new IndexOutOfBoundsException("Index：" + index + ", Size：" + size);
-    }
-
-    private void rangeCheckForAdd(int index) {
-        if (index < 0 || index > size) {
-            outOfBounds(index);
-        }
-    }
-
-    private void rangeCheck(int index) {
-        if (index < 0 || index >= size) {
-            outOfBounds(index);
-        }
     }
 
     @Override
