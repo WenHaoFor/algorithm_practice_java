@@ -52,6 +52,7 @@ public class MyArrayList<E> extends CommonParent<E> {
         }
         size --;
         elements[size] = null;
+        removeCapacity();
         return oldElement;
     }
 
@@ -75,6 +76,7 @@ public class MyArrayList<E> extends CommonParent<E> {
             elements[i] = null;
         }
         size = 0;
+        removeCapacity();
     }
 
     private void ensureCapacity(int minCapacity) {
@@ -87,6 +89,22 @@ public class MyArrayList<E> extends CommonParent<E> {
         }
         elements = newElements;
         System.out.println("扩容前：" + oldCapacity + "，扩容后：" + newCapacity);
+    }
+
+    private void removeCapacity() {
+        int oldCapacity = elements.length;
+        // 如果当前容量小于等于默认容量，则不进行缩容
+        if (oldCapacity <= DEFAULT_CAPACITY) return;
+        // 如果当前元素个数小于当前容量的 0.5， 则进行缩容
+        if (size < oldCapacity * 0.5) {
+            int newCapacity = (oldCapacity >> 1) > DEFAULT_CAPACITY ? (oldCapacity >> 1) : DEFAULT_CAPACITY;
+            E[] newElements = (E[]) new Object[newCapacity];
+            for (int i = 0; i < size; i++) {
+                newElements[i] = elements[i];
+            }
+            elements = newElements;
+            System.out.println("缩容前：" + oldCapacity + "，缩容后" + newCapacity);
+        }
     }
 
     @Override
