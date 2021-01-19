@@ -1,5 +1,6 @@
-import org.w3c.dom.Node;
-
+/**
+ * 单向循环链表
+ * */
 public class MyLinkedListCircle<E> extends CommonParent<E> {
 
     private Node<E> first;
