@@ -1,3 +1,6 @@
+/**
+ * 单向链表
+ * */
 public class MyLinkedList<E> extends CommonParent<E> {
 
     private Node<E> first;
